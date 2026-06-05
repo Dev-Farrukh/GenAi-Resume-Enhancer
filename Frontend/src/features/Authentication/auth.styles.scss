@@ -1,0 +1,423 @@
+/* Login.scss */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Inter, sans-serif;
+}
+
+body {
+  background: #161616;
+}
+
+.login-page {
+  display: flex;
+  min-height: 100vh;
+  background: #161616;
+  color: smokewhite;
+}
+
+/* LEFT SIDE */
+
+.login-left {
+  width: 50%;
+  padding: 40px 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 120px;
+
+  span {
+    font-size: 18px;
+    font-weight: 600;
+  }
+}
+
+.logo-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #c084fc, #8b5cf6);
+}
+
+.login-card {
+  max-width: 420px;
+  width: 100%;
+  margin: auto;
+
+  h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+
+  p {
+    color: #9ca3af;
+    margin-bottom: 35px;
+    font-size: 15px;
+  }
+}
+
+.input-group {
+  margin-bottom: 22px;
+
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  input {
+    width: 100%;
+    height: 52px;
+    background: transparent;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    padding: 0 16px;
+    color: white;
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+
+    &:focus {
+      border-color: #8b5cf6;
+    }
+  }
+}
+
+.password-wrapper {
+  position: relative;
+
+  .eye-icon {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777;
+    font-size: 13px;
+    cursor: pointer;
+    
+    &:hover {
+      color: #8b5cf6;
+    }
+  }
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #d1d5db;
+  font-size: 14px;
+
+  input {
+    accent-color: #8b5cf6;
+  }
+}
+
+.forgot-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.signin-btn {
+  width: 100%;
+  height: 52px;
+  border: none;
+  border-radius: 10px;
+  background: #8b5cf6;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: transform 1s ease-in-out;
+
+  &:hover {
+    background: #7c3aed;
+  }
+  &:active{
+    transform: scale(1.2);
+  }
+}
+
+.google-btn {
+  width: 100%;
+  height: 52px;
+  border-radius: 10px;
+  border: 1px solid #2a2a2a;
+  background: transparent;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.signup-text {
+  text-align: center;
+  margin-top: 28px !important;
+  font-size: 14px;
+
+  span {
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+  }
+}
+
+/* RIGHT SIDE */
+
+.login-right {
+  width: 50%;
+  background: #111111;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-preview {
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.chart-card {
+  width: 430px;
+  height: 260px;
+  background: #050505;
+  border: 1px solid #1f1f1f;
+  border-radius: 20px;
+  padding: 20px;
+  position: relative;
+
+  h4 {
+    color: white;
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+}
+
+.chart {
+  width: 100%;
+  height: 150px;
+  position: relative;
+  overflow: hidden;
+}
+
+.line {
+  position: absolute;
+  width: 120%;
+  height: 2px;
+  border-radius: 20px;
+}
+
+.line1 {
+  top: 30px;
+  background: linear-gradient(to right, #8b5cf6, #d8b4fe);
+  transform: rotate(2deg);
+}
+
+.line2 {
+  top: 80px;
+  background: linear-gradient(to right, #7c3aed, #c084fc);
+  transform: rotate(-1deg);
+}
+
+.line3 {
+  top: 130px;
+  background: linear-gradient(to right, #ddd6fe, #a855f7);
+  transform: rotate(3deg);
+}
+
+.months {
+  display: flex;
+  justify-content: space-between;
+  color: #6b7280;
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+.circle-card {
+  position: absolute;
+  right: -40px;
+  bottom: -30px;
+  width: 180px;
+  height: 180px;
+  background: #050505;
+  border-radius: 18px;
+  border: 1px solid #1f1f1f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 6px solid #a855f7;
+  border-top-color: #e9d5ff;
+  border-right-color: #c084fc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inner-circle {
+  text-align: center;
+
+  span {
+    display: block;
+    color: #9ca3af;
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
+}
+
+.dashboard-text {
+  text-align: center;
+
+  h2 {
+    font-size: 32px;
+    margin-bottom: 14px;
+  }
+
+  p {
+    color: #9ca3af;
+    font-size: 16px;
+  }
+}
+
+.slider-controls {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-top: 50px;
+
+  button {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+  }
+}
+
+.dots {
+  display: flex;
+  gap: 10px;
+
+  span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #444;
+  }
+
+  .active {
+    background: white;
+  }
+}
+
+.loader-container {
+  display: flex;
+  flex-direction: column; // Keeps the text below the spinner if they are stacked
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 16px; // Adds clean spacing between the loader circle and the text
+
+  .loader {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: 5px solid #8b5cf6;
+    border-top-color: transparent;
+    margin-inline: auto;
+    animation: spin 0.7s linear infinite;
+    
+    // Optional bonus: Adds a subtle outer glow to the spinning loader wheel itself
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.3); 
+  }
+
+  .loader-text {
+    color: #c084fc; // A bright lilac that works nicely against dark or light layouts
+    font-weight: 500;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    
+    // Smooth glow effect for your loader text
+    text-shadow: 
+      0 0 6px rgba(139, 92, 246, 0.8),
+      0 0 12px rgba(139, 92, 246, 0.4),
+      0 0 25px rgba(168, 85, 247, 0.2);
+  }
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 992px) {
+  .login-page {
+    flex-direction: column;
+  }
+
+  .login-left{
+    width: 100%;
+  }
+  .login-right {
+    display: none;
+  }
+
+  .login-left {
+    padding: 40px 30px;
+  }
+
+  .chart-card {
+    width: 90%;
+  }
+
+  .dashboard-text h2 {
+    font-size: 26px;
+  }
+}
+
+loader-text {
+  font-weight: 600;
+}
