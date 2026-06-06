@@ -88,4 +88,7 @@ app.use(cors({
 
 app.use("/api/auth", userRoutes)
 app.use("/api/routes", reportRoutes)
+app.get("/" , (req, res) => {
+    res.send("Welcome !!  Backend is working fine")
+})
 export default app
