@@ -83,7 +83,7 @@ db_config()
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin: "https://genai-resume-enhancer-backend.up.railway.app/",
+    origin: "https://genai-resume-enhancer.vercel.app/",
     credentials: true
 }))
 
