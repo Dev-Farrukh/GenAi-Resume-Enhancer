@@ -4,6 +4,14 @@ import config from "../config/config.js"
 import bcrypt from "bcryptjs"
 import blacklistModel from "../model/tokenBlacklist.schema.js"
 
+const cookieOptions = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    maxAge: 24 * 60 * 60 * 1000,
+    path: "/"
+}
+
 /**
  * @route POST
  * @name Register Api
@@ -33,9 +41,7 @@ export const register = async (req, res) => {
     
     const token = jwt.sign({ id: user._id, username: user.username }, config.JWT_SECRET, { expiresIn: "1d" })
 
-    res.cookie("token", token)
-
-
+    res.cookie("token", token, cookieOptions)
     res.status(201).json({ message: "User registered successfully", user: { id: user._id, username: user.username } })
 }
 
@@ -62,7 +68,7 @@ export const login = async (req, res) => {
     }
 
     const token = jwt.sign({ id: userExist._id, username: userExist.username }, config.JWT_SECRET, { expiresIn: "1d" })
-    res.cookie("token", token)
+    res.cookie("token", token, cookieOptions)
 
     res.status(200).json({ message: "Login successful", user: { id: userExist._id, username: userExist.username } })
 }
@@ -73,7 +79,7 @@ export const logout = async (req, res) => {
         await blacklistModel.create({ token })
     }
 
-    res.clearCookie("token")
+    res.clearCookie("token", cookieOptions)
     res.status(200).json({ message: "Logout successful" })
 }
 
