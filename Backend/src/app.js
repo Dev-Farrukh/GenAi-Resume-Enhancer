@@ -4,6 +4,7 @@ import userRoutes from "./routes/user.routes.js"
 import cookieParser from "cookie-parser"
 import db_config from "./config/db_config.js"
 import reportRoutes from "./routes/report.routes.js"
+import config from "./config/config.js"
 
 const temp = {
     sampleDescription: `
@@ -82,7 +83,7 @@ db_config()
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: "https://genai-resume-enhancer-backend.up.railway.app/",
     credentials: true
 }))
 
