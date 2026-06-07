@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const axiosClient = axios.create({
-    baseURL: import.meta.env.VITE_BASE_URL || 'https://genai-resume-enhancer-backend.up.railway.app/api',
+    baseURL: 'https://genai-resume-enhancer-backend.up.railway.app/api',
     withCredentials: true,
 })
 
