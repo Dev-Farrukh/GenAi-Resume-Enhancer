@@ -1,6 +1,9 @@
+import mongoose from "mongoose"
 import { PDFParse } from "pdf-parse"
 import { invokeGenAI, createPdf } from "../services/genai.js";
 import reportModel from "../model/report.schema.js";
+
+const isValidObjectId = (id) => mongoose.isValidObjectId(id)
 
 export const generateReport = async (req, res) => {
     const { jobDescription } = req.body
@@ -32,6 +35,9 @@ export const getReportById = async (req, res) => {
     if (!reportId) {
         return res.status(400).json({ message: "Report ID is required" })
     }
+    if (!isValidObjectId(reportId)) {
+        return res.status(400).json({ message: "Invalid report ID format" })
+    }
     const report = await reportModel.findById(reportId)
     if (!report) {
         return res.status(404).json({ message: "Report not found" })
@@ -43,6 +49,9 @@ export const deleteReportById = async (req, res) => {
     const reportId = req.params.reportId
     if (!reportId) {
         return res.status(404).json({ message: "Report id is required" })
+    }
+    if (!isValidObjectId(reportId)) {
+        return res.status(400).json({ message: "Invalid report ID format" })
     }
 
     const report = await reportModel.findByIdAndDelete(reportId)
@@ -66,6 +75,9 @@ export const createResume = async (req, res) => {
         if (!id) {
             return res.status(400).json({ message: "Id not found" })
         }
+        if (!isValidObjectId(id)) {
+            return res.status(400).json({ message: "Invalid report ID format" })
+        }
         const report = await reportModel.findById(id)
         if (!report) {
             return res.status(400).json({ message: "Report not found" })
@@ -74,14 +86,15 @@ export const createResume = async (req, res) => {
 
         res.set({
             "Content-Type": "application/pdf",
-            "Content-Disposition": `attachment; filename = resume${id}.pdf`
+            "Content-Disposition": `attachment; filename="resume${id}.pdf"`,
+            "Content-Length": resume.length
         })
 
-        res.send(resume)
+        res.status(200).send(resume)
     } catch (error) {
-        console.log("Error in creating line 48 : report-controller.js", error);
+        console.log("Error from report.controller.js", error);
         return res.status(500).json({
-            message: "Error in creating line 48 : report-controller.js",
+            message: "Error from report.controller.js",
             error: error
         })
 

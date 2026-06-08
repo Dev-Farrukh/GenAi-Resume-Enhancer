@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { ReportContext } from "../report.context.jsx";
 import { createResume, deleteReport, generateAiReport, getAllReports, getReportbyId } from "../services/report.service.js";
 
+const isValidMongoId = (id) => typeof id === 'string' && /^[a-fA-F0-9]{24}$/.test(id)
+
 export const useReport = () => {
     const {loading, setLoading , report , setReport, allReports, setAllReports} = useContext(ReportContext);
 
@@ -70,6 +72,10 @@ export const useReport = () => {
     }
 
     const createNewResume = async (reportId) => {
+        if (!isValidMongoId(reportId)) {
+            throw new Error(`Invalid report ID format: ${reportId}`)
+        }
+
         try {
             setLoading(true)
             const response = await createResume(reportId)

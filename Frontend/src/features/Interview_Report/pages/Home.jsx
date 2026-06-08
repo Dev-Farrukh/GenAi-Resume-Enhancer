@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router'
 import { LiaFileUploadSolid } from "react-icons/lia";
 import { SiGooglegemini } from "react-icons/si"
 
+const isValidMongoId = (id) => typeof id === 'string' && /^[a-fA-F0-9]{24}$/.test(id)
+
 const Home = () => {
     const [resume, setResume] = useState(null)
     const [jobDescription, setJobDescription] = useState("")
@@ -59,10 +61,23 @@ const Home = () => {
         e.preventDefault()
         setIsGenerating(true)
         const file = ref.current.files[0]
+        console.log("[Home Page] Generating report...");
         const reportData = await generateReport({ jobDescription, resume: file })
-        console.log("debug 2", reportData?.report?._id);
+        const reportId = reportData?.report?._id
         
-        navigate(`/report/${reportData.report._id ? reportData?.report?._id : null}`)
+        console.log("[Home Page] Report generated. Response data:", reportData);
+        console.log("[Home Page] Extracted report._id:", reportId);
+        console.log("[Home Page] Is valid Mongo ID:", isValidMongoId(reportId));
+
+        if (!isValidMongoId(reportId)) {
+            console.error("[Home Page] Invalid report ID returned from backend:", reportData)
+            alert("Unable to navigate to report: invalid report ID.")
+            setIsGenerating(false)
+            return
+        }
+
+        console.log("[Home Page] Navigating to /report/" + reportId);
+        navigate(`/report/${reportId}`)
         setIsGenerating(false)
     }
 
