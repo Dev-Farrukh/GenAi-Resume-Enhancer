@@ -4,8 +4,6 @@ import { useReport } from '../hooks/report.hook';
 import Loader from '../../Authentication/components/Loader';
 import '../report.scss';
 
-const isValidMongoId = (id) => typeof id === 'string' && /^[a-fA-F0-9]{24}$/.test(id)
-
 const Report = () => {
   const [activeSection, setActiveSection] = useState('overview');
   const { fetchReportById, loading , createNewResume } = useReport();
@@ -15,21 +13,16 @@ const Report = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("[Report Page] Route ID from URL:", id);
-    console.log("[Report Page] Is valid Mongo ID:", isValidMongoId(id));
-    
     const fetchReport = async () => {
       try {
         const data = await fetchReportById(id);
         if (data && data.report) {
-          console.log("[Report Page] Report fetched successfully, report._id:", data.report._id);
           setReportData(data.report);
         } else {
-          console.error("[Report Page] No report data returned");
           setError(true);
         }
       } catch (err) {
-        console.error("[Report Page] Error fetching report:", err);
+        console.error("Error fetching report:", err);
         setError(true);
       }
     };
@@ -38,15 +31,6 @@ const Report = () => {
   }, [id]);
 
 const handleClickResume = async () => {
-  console.log("[Resume Button] Creating resume for ID:", id);
-  console.log("[Resume Button] Is valid Mongo ID:", isValidMongoId(id));
-  
-  if (!isValidMongoId(id)) {
-    console.error('[Resume Button] Invalid report ID for resume creation:', id);
-    alert('Unable to create resume: invalid report ID.')
-    return
-  }
-
   // 1. Open the window IMMEDIATELY so the browser knows the user intended to do it
   const newWindow = window.open('', '_blank');
   

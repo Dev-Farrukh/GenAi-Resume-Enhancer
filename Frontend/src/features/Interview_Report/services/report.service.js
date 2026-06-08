@@ -5,8 +5,6 @@ const axiosClient = axios.create({
     withCredentials: true,
 })
 
-const isValidMongoId = (id) => typeof id === 'string' && /^[a-fA-F0-9]{24}$/.test(id)
-
 export const generateAiReport = async ( data ) => {
     try {
         const response = await axiosClient.post('/routes/report/generate', data)
@@ -48,20 +46,11 @@ export const deleteReport = async (reportId) => {
 }
 
 export const createResume = async (reportId) => {
-    console.log("[Report Service] createResume called with reportId:", reportId);
-    console.log("[Report Service] Is valid Mongo ID:", isValidMongoId(reportId));
-    
-    if (!isValidMongoId(reportId)) {
-        throw new Error(`Invalid report ID format: ${reportId}`)
-    }
-
     try {
-        const apiUrl = `/routes/createResume/${reportId}`;
-        console.log("[Report Service] Sending POST request to:", apiUrl);
-        const response = await axiosClient.post(apiUrl, null, { responseType: 'blob' })
-        console.log("[Report Service] Response received, blob size:", response.data.size);
+        const response = await axiosClient.post(`/routes/createResume/${reportId}`, null, { responseType: 'blob' })
         return response.data
     } catch (error) {
-        console.log("[Report Service] Error in createResume:", error)
-        throw error
+        console.log("Error in report-service - 43" , error);
+        
     }
+}
