@@ -156,7 +156,7 @@ const createPdf = async (report) => {
         Use clear headings for Summary, Experience, Skills, and Education.
         Each bullet should be no more than 15 words, and the full resume should fit on one page.
         Do not include any explanation or markdown outside the HTML.
-        Report: ${JSON.stringify(report)}`
+        Report: ${report}`
 
     const response = await genai.models.generateContent({
         model: "gemini-2.5-flash-lite",
@@ -167,34 +167,24 @@ const createPdf = async (report) => {
         }
     })
 
-    const parsed = JSON.parse(response.text)
-    const html = parsed?.html
-    if (!html) {
-        throw new Error("GenAI response did not return HTML")
-    }
-
     try {
-        const browser = await puppeteer.launch({
-            args: ["--no-sandbox", "--disable-setuid-sandbox"]
-        });
+        const browser = await puppeteer.launch();
         const page = await browser.newPage();
-        await page.setContent(html, { waitUntil: 'networkidle2' })
+        await page.setContent(JSON.parse(response.text).html, { waitUntil: 'networkidle2' })
         const pdf = await page.pdf({
             format: "A4",
             margin: {
-                top: "10mm",
+                top: "1k0mm",
                 bottom: "20mm",
                 left: "15mm",
                 right: "15mm"
             }
         })
         await browser.close()
-        return pdf;
+        return pdf ;
 
     } catch (error) {
-        const serverError = new Error("Server Error while generating PDF")
-        serverError.cause = error
-        throw serverError
+            throw new Error("Server Error" , error)
     }
 
 
