@@ -66,7 +66,7 @@ export const createResume = async (req, res) => {
         if (!id) {
             return res.status(400).json({ message: "Id not found" })
         }
-        const report = await reportModel.findById(id)
+        const report = await reportModel.findOne(id)
         if (!report) {
             return res.status(400).json({ message: "Report not found" })
         }
