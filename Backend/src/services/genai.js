@@ -124,8 +124,9 @@ const invokeGenAI = async (Resume, jobDescription) => {
     Resume : ${Resume}, Job Description: ${jobDescription}`;
 
     const response = await genai.models.generateContent({
-        model: "gemini-2.5-flash",
+        // model: "gemini-2.5-flash",/
         // model: "gemini-2.5-flash-lite",
+        model:"gemini-3.1-pro-preview",
         contents: prompt,
         config: {
             responseMimeType: "application/json",
