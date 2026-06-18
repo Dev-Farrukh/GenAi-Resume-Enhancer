@@ -9,8 +9,8 @@ export const useReport = () => {
         try {
             setLoading(true);
             const data = new FormData();
-            data.append('jobDescription', reportData.jobDescription);
             data.append('resume', reportData.resume);
+            data.append('jobDescription', reportData.jobDescription);
             const response = await generateAiReport(data);
             setReport(response);
             console.log("Report generated successfully", response);

@@ -30,7 +30,7 @@ reportRoutes.get('/reports', tokenVerify, reportController.getAllReports)
  * @description Create a resume based on a report
  * @access Private
  */
-reportRoutes.post('/createResume/:id', tokenVerify, reportController.createResume)
+reportRoutes.post('/createResume/:_id', tokenVerify, reportController.createResume)
 
 /**
  * @route DELETE api/routes/delete/:id

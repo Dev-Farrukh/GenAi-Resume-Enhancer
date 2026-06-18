@@ -1,6 +1,7 @@
 import { PDFParse } from "pdf-parse"
 import { invokeGenAI, createPdf } from "../services/genai.js";
 import reportModel from "../model/report.schema.js";
+import mongoose from "mongoose";
 
 export const generateReport = async (req, res) => {
     const { jobDescription } = req.body
@@ -62,11 +63,13 @@ export const getAllReports = async (req, res) => {
 
 export const createResume = async (req, res) => {
     try {
-        const { id } = req.params
-        if (!id) {
+        const { _id } = req.params
+        
+        if (!_id) {
             return res.status(400).json({ message: "Id not found" })
         }
-        const report = await reportModel.findOne(id)
+        const report = await reportModel.findOne({"_id":_id})
+        console.log("report" , report);
         if (!report) {
             return res.status(400).json({ message: "Report not found" })
         }
@@ -74,15 +77,15 @@ export const createResume = async (req, res) => {
 
         res.set({
             "Content-Type": "application/pdf",
-            "Content-Disposition": `attachment; filename = resume${id}.pdf`
+            "Content-Disposition": `attachment; filename = resume${_id}.pdf`
         })
 
         res.send(resume)
     } catch (error) {
-        console.log("Error in creating line 48 : report-controller.js", error);
+        console.log("Error in creating from report-controller.js - line 82", error);
         return res.status(500).json({
-            message: "Error in creating line 48 : report-controller.js",
-            error: error
+            message: "Error in creating from report-controller.js - line 82",
+            error: error.message
         })
 
 
