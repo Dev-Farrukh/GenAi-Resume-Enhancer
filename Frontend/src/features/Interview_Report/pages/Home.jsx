@@ -140,7 +140,7 @@ const Home = () => {
                     </div>
                 </form>
 
-                {allReports.length > 0 &&
+                {allReports?.length > 0 &&
                     <div className='history-section'>
                         <div className='history-header'>
                             <div className='section-title history-title'>Recent History</div>

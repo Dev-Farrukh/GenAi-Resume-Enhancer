@@ -86,6 +86,7 @@ export const createResume = async (req, res) => {
         return res.status(500).json({
             message: "Error in creating from report-controller.js - line 82",
             error: error.message
+            
         })
 
 

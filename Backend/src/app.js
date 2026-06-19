@@ -13,15 +13,29 @@ db_config()
 app.use(express.json())
 app.use(cookieParser())
 
+// const frontendOrigin = process.env.FRONTEND_URL ?? "https://genai-resume-enhancer.vercel.app"
+// const allowedOrigins = [frontendOrigin]
+// if (process.env.NODE_ENV !== "production") {
+//     allowedOrigins.push("http://localhost:5173")
+// }
+
+// app.use(cors({
+//     origin: allowedOrigins,
+//     credentials: true
+// }))
+
+// Fallback to production if FRONTEND_URL isn't set
 const frontendOrigin = process.env.FRONTEND_URL ?? "https://genai-resume-enhancer.vercel.app"
-const allowedOrigins = [frontendOrigin]
-if (process.env.NODE_ENV !== "production") {
-    allowedOrigins.push("http://localhost:5173")
-}
+
+const allowedOrigins = [
+    frontendOrigin, 
+    "http://localhost:5173",
+    "https://verbose-winner-wrp9qp5xj6r73gq64-5173.app.github.dev" 
+]
 
 app.use(cors({
     origin: allowedOrigins,
-    credentials: true
+    credentials: true // Crucial for allowing cookies to pass through
 }))
 
 app.use("/api/auth", userRoutes)
