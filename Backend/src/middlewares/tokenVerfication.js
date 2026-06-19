@@ -4,6 +4,7 @@ import config from "../config/config.js"
 
 const tokenVerify = async (req, res, next) => {
     const token = req.cookies.token
+    console.log("tokenVerify cookie check:", req.cookies)
     if (!token) {
         return res.status(401).json({ message: "Token not Provided" })
     }
