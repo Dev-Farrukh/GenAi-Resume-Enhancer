@@ -8,8 +8,8 @@ export const useAuth = () => {
     const handleLogin = async ({email, password}) => {
         try {
             setLoading(true);
-            const userData = await loginUser({ email, password });
-            setUser(userData);
+            const response = await loginUser({ email, password });
+            setUser(response?.user);
 
         } catch (error) {
             console.error("Error logging in user", error);
@@ -21,8 +21,8 @@ export const useAuth = () => {
     const handleRegister = async (username, email, password) => {
         try {
             setLoading(true);
-            const userData = await registerUser({ username, email, password });
-            setUser(userData);
+            const response = await registerUser({ username, email, password });
+            setUser(response?.user);
             
         } catch (error) {
             console.error("Error registering user", error);
@@ -47,8 +47,8 @@ export const useAuth = () => {
         const handleGetuser = async () => {
         try {
             setLoading(true);
-            const userData = await getCurrentUser();
-            setUser(userData);
+            const response = await getCurrentUser();
+            setUser(response?.user);
         } catch (error) {
             console.error("Error fetching current user", error);
         } finally {
