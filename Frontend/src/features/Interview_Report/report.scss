@@ -234,6 +234,8 @@ html, body, #root {
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
+  margin-inline : auto ;
+  margin-top : 15px ;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 
   &:hover {
