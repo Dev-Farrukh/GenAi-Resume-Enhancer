@@ -90,8 +90,7 @@ html, body, #root {
   min-height: 240px;
   background: #1f1f1f;
   border: 1px solid #2a2a2a;
-  border-top-left-radius: 16px;
-  border-bottom-left-radius: 16px;
+  border-radius: 16px;
   color: #e5e7eb;
   padding: 20px;
   font-size: 16px;
@@ -140,6 +139,12 @@ html, body, #root {
   /* For Firefox compatibility */
   scrollbar-width: thin;
   scrollbar-color: #3a3a3a #1a1a1a;
+}
+@media (min-width: 768px) {
+  .input-textarea {
+      border-top-left-radius: 16px;
+      border-bottom-left-radius: 16px;
+  }
 }
 
 .char-count {
