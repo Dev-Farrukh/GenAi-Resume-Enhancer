@@ -135,7 +135,7 @@ const Home = () => {
                         <div className='footer-info'>AI Powered Strategy Generation - Gemini 2.5+</div>
                         <button className='generate-btn' type="submit">
                             <span className='btn-icon'><SiGooglegemini size={24}/></span>
-                            Generate My Interview Strategy
+                            Generate My Strategy
                         </button>
                     </div>
                 </form>
