@@ -59,13 +59,6 @@ html, body, #root {
   gap: 40px;
   margin-bottom: 20px;
 }
-
-.left-section, .right-section {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
 .section-title {
   font-size: 18px;
   font-weight: 700;
@@ -84,6 +77,14 @@ html, body, #root {
     font-weight: 600;
   }
 }
+
+
+.left-section, .right-section {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
 
 .input-textarea {
   width: 100%;
