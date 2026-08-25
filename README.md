@@ -79,11 +79,9 @@ Open the local URL shown by the dev server in your browser.
 - `npm run dev` - Start the development server
 - `npm run build` - Create a production build
 - `npm run lint` - Run ESLint
-- `npm run preview` - Preview the production build locally
 
 ### Backend ⚙️
 - `npm run dev` - Start the backend in development mode
-- `npm start` - Start the backend in production mode
 
 ## How It Works 🔍
 1. Upload or paste your resume content.
@@ -91,9 +89,6 @@ Open the local URL shown by the dev server in your browser.
 3. The AI engine analyzes both and suggests tailored, ATS-optimized content.
 4. Export the enhanced resume as an ATS-friendly PDF.
 5. Get a personalized interview preparation plan for the target role.
-
-## Deployment 🌐
-The live app is deployed on Vercel: [genai-resume-enhancer.vercel.app](https://genai-resume-enhancer.vercel.app/)
 
 ## Contact 📞
 For questions or suggestions, open an issue in the [project repository](https://github.com/Dev-Farrukh/GenAi-Resume-Enhancer) or connect on [LinkedIn](https://linkedin.com/in/dev-farrukh).
