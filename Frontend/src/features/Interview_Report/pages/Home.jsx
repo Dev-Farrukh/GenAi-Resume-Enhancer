@@ -72,7 +72,7 @@ const Home = () => {
     
     if (loading) {
         if (isGenerating) {
-            return <Loader data={["Ai is generating your report ", "Almost there ..."]} />
+            return <Loader data={["Ai is working ", "Almost there ..."]} />
         }
         return <Loader />
     }
