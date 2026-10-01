@@ -2,6 +2,21 @@ import { GoogleGenAI } from "@google/genai";
 import config from "../config/config.js";
 import puppeteer from "puppeteer"
 
+let browserInstance = null;
+const getBrowserInstance = async () => {
+    if (!browserInstance) {
+        browserInstance = await puppeteer.launch({
+            args: [
+             '--no-sandbox',
+             '--disable-setuid-sandbox',
+             '--disable-dev-shm-usage',
+             '--disable-gpu'
+            ]
+        });
+    }
+    return browserInstance;
+};
+
 const genai = new GoogleGenAI({ apiKey: config.GENAI_API_KEY });
 const models =
     [
@@ -175,16 +190,9 @@ const createPdf = async (report) => {
     }
 
     try {
-        const browser = await puppeteer.launch({
-            args: [
-             '--no-sandbox',
-             '--disable-setuid-sandbox',
-             '--disable-dev-shm-usage',
-             '--disable-gpu'
-            ]
-        });
+        const browser = await getBrowserInstance();
         const page = await browser.newPage();
-        await page.setContent(html, { waitUntil: 'networkidle2' })
+        await page.setContent(html, { waitUntil: 'domcontentloaded' })
         const pdf = await page.pdf({
             format: "A4",
             margin: {
@@ -194,7 +202,7 @@ const createPdf = async (report) => {
                 right: "15mm"
             }
         })
-        await browser.close()
+        await page.close();
         return pdf;
 
     } catch (error) {
