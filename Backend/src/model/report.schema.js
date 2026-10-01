@@ -109,7 +109,12 @@ const reportSchema = new mongoose.Schema({
 
     skillGaps: [SkillGapSchema],
 
-    preparationPlan: [PreparationPlanSchema]
+    preparationPlan: [PreparationPlanSchema],
+
+    atsResumeHtml: {
+        type: String,
+        default: null
+    }
 
 }, { timestamps: true });
 

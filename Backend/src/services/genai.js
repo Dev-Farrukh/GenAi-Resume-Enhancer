@@ -155,38 +155,47 @@ const invokeGenAI = async (Resume, jobDescription) => {
 };
 
 const createPdf = async (report) => {
-    const reportSchema = {
-        type: "OBJECT",
-       properties : {
-         html: {
-            type: "STRING",
-            description: "Plain HTML code of the resume which can be converted to PDF"
+    let html = report.atsResumeHtml;
 
-        }
-       },
-       required : ["html"]
-    }
-    const prompt = `
-        Write the HTML code for a concise ATS-friendly resume using only the most relevant information from the report.
-        Output a single-page resume with short bullet points, minimal text, and no extra narrative.
-        Use clear headings for Summary, Experience, Skills, and Education.
-        Each bullet should be no more than 15 words, and the full resume should fit on one page.
-        Do not include any explanation or markdown outside the HTML.
-        Report: ${JSON.stringify(report)}`
-
-    const response = await genai.models.generateContent({
-        model: "gemini-2.5-flash-lite",
-        contents: prompt,
-        config: {
-            responseMimeType: "application/json",
-            responseSchema: reportSchema
-        }
-    })
-
-    const parsed = JSON.parse(response.text)
-    const html = parsed?.html
     if (!html) {
-        throw new Error("GenAI response did not return HTML")
+        const reportSchema = {
+            type: "OBJECT",
+           properties : {
+             html: {
+                type: "STRING",
+                description: "Plain HTML code of the resume which can be converted to PDF"
+            }
+           },
+           required : ["html"]
+        }
+        const prompt = `
+            Write the HTML code for a concise ATS-friendly resume using only the most relevant information from the report.
+            Output a single-page resume with short bullet points, minimal text, and no extra narrative.
+            Use clear headings for Summary, Experience, Skills, and Education.
+            Each bullet should be no more than 15 words, and the full resume should fit on one page.
+            Do not include any explanation or markdown outside the HTML.
+            Report: ${JSON.stringify(report)}`
+
+        const response = await genai.models.generateContent({
+            model: "gemini-2.5-flash-lite",
+            contents: prompt,
+            config: {
+                responseMimeType: "application/json",
+                responseSchema: reportSchema
+            }
+        })
+
+        const parsed = JSON.parse(response.text)
+        html = parsed?.html
+        if (!html) {
+            throw new Error("GenAI response did not return HTML")
+        }
+
+        // Cache the generated HTML in the database
+        if (report && typeof report.save === 'function') {
+            report.atsResumeHtml = html;
+            await report.save();
+        }
     }
 
     try {
