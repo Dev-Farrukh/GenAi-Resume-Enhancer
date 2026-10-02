@@ -8,14 +8,20 @@
 }
 
 body {
-  background: #161616;
+  background: #0a0a0a;
 }
 
 .login-page {
   display: flex;
   min-height: 100vh;
-  background: #161616;
-  color: smokewhite;
+  background: 
+    radial-gradient(circle at 15% 50%, rgba(139, 92, 246, 0.12), transparent 50%),
+    radial-gradient(circle at 85% 30%, rgba(124, 58, 237, 0.12), transparent 50%),
+    radial-gradient(circle at 50% 100%, rgba(76, 29, 149, 0.15), transparent 50%),
+    #050505;
+  color: #f3f4f6;
+  position: relative;
+  overflow: hidden;
 }
 
 /* LEFT SIDE */
@@ -25,6 +31,8 @@ body {
   padding: 40px 80px;
   display: flex;
   flex-direction: column;
+  background: transparent;
+  z-index: 1;
 }
 
 .logo {
@@ -77,17 +85,19 @@ body {
   input {
     width: 100%;
     height: 52px;
-    background: transparent;
-    border: 1px solid #2a2a2a;
-    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
     padding: 0 16px;
     color: white;
     font-size: 15px;
     outline: none;
-    transition: 0.3s;
+    transition: all 0.3s ease;
 
     &:focus {
       border-color: #8b5cf6;
+      background: rgba(255, 255, 255, 0.06);
+      box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
     }
   }
 }
@@ -141,20 +151,22 @@ body {
   width: 100%;
   height: 52px;
   border: none;
-  border-radius: 10px;
-  background: #8b5cf6;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
   color: white;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   margin-bottom: 16px;
-  transition: transform 1s ease-in-out;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
 
   &:hover {
-    background: #7c3aed;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
   }
   &:active{
-    transform: scale(1.2);
+    transform: scale(0.98);
   }
 }
 
@@ -185,10 +197,17 @@ body {
   margin-top: 28px !important;
   font-size: 14px;
 
-  span {
-    color: white;
+  a {
+    color: #c084fc;
     font-weight: 600;
     cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      color: #d8b4fe;
+      text-decoration: underline;
+    }
   }
 }
 
@@ -196,7 +215,10 @@ body {
 
 .login-right {
   width: 50%;
-  background: #111111;
+  background: 
+    radial-gradient(circle at top right, rgba(139, 92, 246, 0.18), transparent 60%),
+    rgba(10, 10, 10, 0.2);
+  backdrop-filter: blur(30px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -213,11 +235,19 @@ body {
 .chart-card {
   width: 430px;
   height: 260px;
-  background: #050505;
-  border: 1px solid #1f1f1f;
+  background: rgba(15, 15, 15, 0.6);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   border-radius: 20px;
   padding: 20px;
   position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 rgba(139, 92, 246, 0.2);
+  }
 
   h4 {
     color: white;
@@ -231,31 +261,35 @@ body {
   height: 150px;
   position: relative;
   overflow: hidden;
-}
+  
+  .area {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
 
-.line {
-  position: absolute;
-  width: 120%;
-  height: 2px;
-  border-radius: 20px;
-}
+  .area__line {
+    fill: none;
+    stroke: #a78bfa;
+    stroke-width: 1.6;
+    vector-effect: non-scaling-stroke;
+  }
 
-.line1 {
-  top: 30px;
-  background: linear-gradient(to right, #8b5cf6, #d8b4fe);
-  transform: rotate(2deg);
-}
+  .y {
+    position: absolute;
+    left: 0;
+    font-size: .65rem;
+    color: #8f8aa6;
 
-.line2 {
-  top: 80px;
-  background: linear-gradient(to right, #7c3aed, #c084fc);
-  transform: rotate(-1deg);
-}
+    &.y1 {
+      top: 8px;
+    }
 
-.line3 {
-  top: 130px;
-  background: linear-gradient(to right, #ddd6fe, #a855f7);
-  transform: rotate(3deg);
+    &.y2 {
+      top: 75px;
+    }
+  }
 }
 
 .months {
@@ -272,12 +306,19 @@ body {
   bottom: -30px;
   width: 180px;
   height: 180px;
-  background: #050505;
+  background: rgba(15, 15, 15, 0.6);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   border-radius: 18px;
-  border: 1px solid #1f1f1f;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 .circle {

@@ -1,4 +1,3 @@
-import React from 'react'
 import Login from '../features/Authentication/pages/Login'
 import { Route, Routes } from 'react-router'
 import Signup from '../features/Authentication/pages/Signup'

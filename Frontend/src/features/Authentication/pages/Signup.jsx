@@ -1,5 +1,6 @@
 // Register.jsx
-import React, { useState } from "react";
+import { useState } from "react";
+import { motion } from "framer-motion";
 import "../auth.styles2.scss";
 import { Link, useNavigate } from "react-router";
 import { Eye, EyeOff } from "lucide-react";
@@ -29,7 +30,12 @@ const Signup = () => {
   return (
     <div className="register-page">
       {/* LEFT SIDE - IMAGE / DASHBOARD */}
-      <div className="register-left">
+      <motion.div 
+        className="register-left"
+        initial={{ opacity: 0, x: -60 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
         <div className="dashboard-preview">
           <div className="analytics-card">
             <div className="card-header">
@@ -37,12 +43,12 @@ const Signup = () => {
               <div className="badge">+24%</div>
             </div>
 
-            <div className="bars">
-              <div className="bar h1"></div>
-              <div className="bar h2"></div>
-              <div className="bar h3"></div>
-              <div className="bar h4"></div>
-              <div className="bar h5"></div>
+            <div className="growth-bars">
+              <div className="growth-bar h1"><span>5.5k</span></div>
+              <div className="growth-bar h2"><span>7.5k</span></div>
+              <div className="growth-bar h3"><span>4.5k</span></div>
+              <div className="growth-bar h4"><span>9.0k</span></div>
+              <div className="growth-bar h5"><span>6.5k</span></div>
             </div>
           </div>
 
@@ -63,10 +69,15 @@ const Signup = () => {
           </p>
         </div>
 
-      </div>
+      </motion.div>
 
       {/* RIGHT SIDE - REGISTER FORM */}
-      <div className="register-right">
+      <motion.div 
+        className="register-right"
+        initial={{ opacity: 0, x: 60 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+      >
 
         <div className="register-card">
           <h2>Create account</h2>
@@ -107,7 +118,7 @@ const Signup = () => {
             Already have an account? <Link to="/login">Log in</Link>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
