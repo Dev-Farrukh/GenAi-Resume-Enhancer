@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router";
 import {
   ScanSearch,
   KeyRound,
@@ -124,12 +125,12 @@ export default function LandingPage() {
           <a href="#dashboard" onClick={() => setMobileNav(false)}>Dashboard</a>
           <a href="#features" onClick={() => setMobileNav(false)}>Features</a>
           <a href="#about" onClick={() => setMobileNav(false)}>Vision</a>
-          <a href="/login" onClick={() => setMobileNav(false)}>Sign in</a>
+          <Link to="/login" onClick={() => setMobileNav(false)}>Sign in</Link>
         </nav>
         <div className="nav__actions">
-          <a href="/signup" className="btn btn--glow">
+          <Link to="/signup" className="btn btn--glow">
             Get started
-          </a>
+          </Link>
           <button className="nav__toggle" onClick={() => setMobileNav(!mobileNav)} aria-label="Toggle menu">
             {mobileNav ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -193,15 +194,7 @@ export default function LandingPage() {
             to streamline and simplify job applications.
           </motion.p>
 
-          <motion.a
-            href="/signup"
-            className="btn btn--glow"
-            style={{
-              marginTop: "12px",
-              padding: "12px 28px",
-              fontSize: "1rem",
-              width: "fit-content",
-            }}
+          <motion.div
             variants={{
               hidden: { opacity: 0, y: 40 },
               visible: {
@@ -211,8 +204,19 @@ export default function LandingPage() {
               },
             }}
           >
-            Get started
-          </motion.a>
+            <Link
+              to="/signup"
+              className="btn btn--glow"
+              style={{
+                marginTop: "12px",
+                padding: "12px 28px",
+                fontSize: "1rem",
+                width: "fit-content",
+              }}
+            >
+              Get started
+            </Link>
+          </motion.div>
         </motion.div>
         <motion.div
           className="hero__trust"
@@ -494,9 +498,9 @@ export default function LandingPage() {
         </div>
 
         <div className="vm__cta">
-          <a href="/signup" className="btn btn--glow">
+          <Link to="/signup" className="btn btn--glow">
             Enhance my resume <ArrowRight size={15} />
-          </a>
+          </Link>
         </div>
       </section>
 

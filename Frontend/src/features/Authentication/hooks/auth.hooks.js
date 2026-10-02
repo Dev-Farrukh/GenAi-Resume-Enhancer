@@ -1,6 +1,6 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../auth.context.jsx";
-import { getCurrentUser, loginUser, logoutUser, registerUser } from "../services/auth.services";
+import { loginUser, logoutUser, registerUser } from "../services/auth.services";
 
 export const useAuth = () => {
     const { user, loading, setUser, setLoading } = useContext(AuthContext);
@@ -27,6 +27,7 @@ export const useAuth = () => {
             
         } catch (error) {
             console.error("Error registering user", error);
+            throw error;
         } finally {
             setLoading(false);
         }
@@ -39,25 +40,12 @@ export const useAuth = () => {
             setUser(null);
         } catch (error) {
             console.error("Error logging out user", error);
+            throw error;
         } finally {
             setLoading(false);
         }
     }
 
-    useEffect(()=> {
-        const handleGetuser = async () => {
-        try {
-            setLoading(true);
-            const response = await getCurrentUser();
-            setUser(response?.user);
-        } catch (error) {
-            console.error("Error fetching current user", error);
-        } finally {
-            setLoading(false);
-        } 
-    }
-    handleGetuser();
-    },[])
 
     return {
         user,

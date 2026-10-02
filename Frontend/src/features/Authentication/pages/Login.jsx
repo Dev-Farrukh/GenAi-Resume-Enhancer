@@ -38,7 +38,7 @@ const Login = () => {
     e.preventDefault();
     try {
       await handleLogin({email, password});
-      navigate("/");
+      navigate("/generator");
     } catch (error) {
       toast.error(error.response?.data?.message || "Failed to log in. Please check your credentials.");
     }

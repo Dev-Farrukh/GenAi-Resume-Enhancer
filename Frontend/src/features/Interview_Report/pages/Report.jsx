@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import { useReport } from '../hooks/report.hook';
 import Loader from '../../Authentication/components/Loader';
+import { ArrowLeft } from 'lucide-react';
 import '../report.scss';
 
 const Report = () => {
@@ -196,7 +197,7 @@ const handleClickResume = async () => {
             <div className="error-icon">⚠️</div>
             <h2>Report Not Found</h2>
             <p>We couldn't locate or load the requested data insights. It might have been deleted, or something went wrong on our end.</p>
-            <button className="generate-btn" onClick={() => navigate('/')}>
+            <button className="generate-btn" onClick={() => navigate('/generator')}>
               Return to Dashboard
             </button>
           </div>
@@ -206,6 +207,13 @@ const handleClickResume = async () => {
           <aside className="report-sidebar left-sidebar">
             <div className="side-menu">
               <div className='sidebar-content'>
+                <button 
+                  className="sidebar-btn back-btn" 
+                  onClick={() => navigate('/generator')}
+                  style={{ marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px', color: '#c084fc' }}
+                >
+                  <ArrowLeft size={16} /> Back to Dashboard
+                </button>
                 <button
                   className={`sidebar-btn ${activeSection === 'overview' ? 'active' : ''}`}
                   onClick={() => setActiveSection('overview')}

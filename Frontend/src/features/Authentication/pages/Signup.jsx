@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router";
 import { Eye, EyeOff } from "lucide-react";
 import { useAuth } from "../hooks/auth.hooks";
 import Loader from "../components/Loader";
-
+import toast from "react-hot-toast";
 
 const Signup = () => {
   const [showPassword , setShowPassword] = useState(false);
@@ -19,8 +19,12 @@ const Signup = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    await handleRegister(username, email, password);
-    navigate("/");
+    try {
+      await handleRegister(username, email, password);
+      navigate("/generator");
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to sign up.");
+    }
   }
 
   if (loading) {

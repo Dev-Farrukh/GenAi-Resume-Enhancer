@@ -13,7 +13,7 @@ export const registerUser = async ({username , email , password}) => {
         return response.data;
     } catch (error) {
         console.log("Error registering user" , error);
-        
+        throw error;
     }
 }
 
@@ -25,6 +25,7 @@ export const loginUser = async ({email , password}) => {
         return response.data;
     } catch (error) {
         console.log("Error logging in user" , error);
+        throw error;
     }
 }
 
@@ -34,6 +35,7 @@ export const logoutUser = async () => {
         return response.data;
     } catch (error) {
         console.log("Error logging out user" , error);
+        throw error;
     }
 }
 
@@ -43,5 +45,6 @@ export const getCurrentUser = async () => {
         return response.data;
     }catch (error) {
         console.log("Error fetching current user" , error);
+        throw error;
     }
 }
