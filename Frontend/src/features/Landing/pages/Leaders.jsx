@@ -3,14 +3,20 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import "./Leaders.scss";
 
+import founderImg from "../../../assets/founder.webp";
+import antigravityImg from "../../../assets/antigravity.webp";
+import qoderImg from "../../../assets/qoder.webp";
+import claudeImg from "../../../assets/claude.webp";
+import stitchImg from "../../../assets/stitch.webp";
+
 /* First item is the founder and is centered on load. Replace names, roles and photos
    (e.g. import photo from "../../../assets/team/founder.jpg"). */
 const leaders = [
-  { id: 1, name: "Farrukh", role: "Founder & CEO", img: "src/assets/founder.webp" },
-  { id: 4, name: "Antigravity", role: "Jr. Developer", img: "src/assets/antigravity.webp" },
-  { id: 2, name: "Qoder", role: "Jr. AI Engineer", img: "src/assets/qoder.webp" },
-  { id: 3, name: "Claude", role: "Jr. QA Engineer", img: "src/assets/claude.webp" },
-  { id: 5, name: "Stitch", role: "Jr. UI/UX Designer", img: "src/assets/stitch.webp" },
+  { id: 1, name: "Farrukh", role: "Founder & CEO", img: founderImg },
+  { id: 4, name: "Antigravity", role: "Jr. Developer", img: antigravityImg },
+  { id: 2, name: "Qoder", role: "Jr. AI Engineer", img: qoderImg },
+  { id: 3, name: "Claude", role: "Jr. QA Engineer", img: claudeImg },
+  { id: 5, name: "Stitch", role: "Jr. UI/UX Designer", img: stitchImg },
 ];
 
 export default function Leaders() {
