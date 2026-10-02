@@ -123,25 +123,22 @@ const geminiResponseSchema = {
 
 const invokeGenAI = async (Resume, jobDescription) => {
     const prompt = `
-    You are an expert technical recruiter, senior software engineer,
-    and interview coach with 15+ years of experience at top tech companies.
-    You specialize in analyzing resumes against job descriptions, identifying gaps,
-    and preparing candidates for both behavioral and technical interviews.
-    Analyze the provided resume and job description thoroughly. Your job is to
+    You are an expert technical recruiter and interview coach with 15+ years of experience.
+    Analyze the provided resume and job description. Your job is to
     evaluate how well the candidate matches the job description, assign an overall 
-    score (0–100), generate behavioral interview questions with their intention and 
-    detailed answer guidance, generate technical interview questions with their 
-    intention and step-by-step answer guidance, identify skill gaps with severity levels, 
-    create a structured preparation plan to improve the candidate. Think like a 
-    Google/Meta interviewer. Instead of asking basic questions, focus on
-    real-world problem solving, trade-offs, decision-making, and depth of understanding.
-    For example, instead of asking “What is React?”, ask scenario-based questions like how 
-    the candidate optimized a React application and what trade-offs were involved. Expect reasoning, 
-    clarity, and practical experience in answers.Do not include any explanation, markdown,
-    or extra text outside the JSON. Ensure all questions are specific to the given job 
-    description and all practice tasks are actionable and practical.
-    Generate the repoort ising following details
-    Resume : ${Resume}, Job Description: ${jobDescription}`;
+    score (0–100), generate EXACTLY 3 behavioral interview questions with intention and 
+    answer guidance, generate EXACTLY 3 technical interview questions with intention and 
+    step-by-step answer guidance, identify up to 3 key skill gaps with severity levels, 
+    and create a concise 3-day structured preparation plan. 
+    
+    Think like a top-tier tech interviewer. Ask scenario-based, in-depth questions instead of basic ones. 
+    Make the answers actionable. 
+    
+    IMPORTANT for speed: Keep explanations and tasks extremely concise. Limit the total output length.
+    Do not include any explanation, markdown, or extra text outside the JSON.
+    
+    Resume: ${Resume}
+    Job Description: ${jobDescription}`;
 
     const response = await genai.models.generateContent({
         model: "gemini-2.5-flash",
