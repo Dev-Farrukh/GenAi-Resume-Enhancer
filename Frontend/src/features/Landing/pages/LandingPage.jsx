@@ -24,7 +24,7 @@ import {
   X,
 } from "lucide-react";
 import { motion } from "framer-motion";
-import heroImg from "../../../assets/hero.png";
+import heroImg from "../../../assets/hero.webp";
 import logo from "../../../assets/logo.png";
 import Leaders from "./Leaders";
 import "./LandingPage.scss";

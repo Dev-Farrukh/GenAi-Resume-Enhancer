@@ -6,11 +6,11 @@ import "./Leaders.scss";
 /* First item is the founder and is centered on load. Replace names, roles and photos
    (e.g. import photo from "../../../assets/team/founder.jpg"). */
 const leaders = [
-  { id: 1, name: "Founder Name", role: "Founder & CEO", img: "https://i.pravatar.cc/600?img=12" },
-  { id: 2, name: "Co-founder Name", role: "Lead Designer", img: "https://i.pravatar.cc/600?img=32" },
-  { id: 3, name: "Team Member", role: "Product Manager", img: "https://i.pravatar.cc/600?img=44" },
-  { id: 4, name: "Team Member", role: "AI Engineer", img: "https://i.pravatar.cc/600?img=15" },
-  { id: 5, name: "Team Member", role: "Head of Growth", img: "https://i.pravatar.cc/600?img=25" },
+  { id: 1, name: "Farrukh", role: "Founder & CEO", img: "src/assets/founder.webp" },
+  { id: 4, name: "Antigravity", role: "Jr. Developer", img: "src/assets/antigravity.webp" },
+  { id: 2, name: "Qoder", role: "Jr. AI Engineer", img: "src/assets/qoder.webp" },
+  { id: 3, name: "Claude", role: "Jr. QA Engineer", img: "src/assets/claude.webp" },
+  { id: 5, name: "Stitch", role: "Jr. UI/UX Designer", img: "src/assets/stitch.webp" },
 ];
 
 export default function Leaders() {
