@@ -510,7 +510,7 @@ export default function LandingPage() {
         <span className="foot__brand">
           <LogoMark size={26} /> GenAI Resume Enhancer
         </span>
-        <small>© {new Date().getFullYear()}</small>
+        <small>© {new Date().getFullYear()} All rights reserved</small>
       </footer>
     </div>
   );
