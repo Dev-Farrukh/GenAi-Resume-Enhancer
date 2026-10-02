@@ -190,7 +190,7 @@ const Home = () => {
                             <span className='history-count'>{allReports.length}</span>
                         </div>
                         <div className='history-grid'>
-                            {allReports.map((item, i) => (
+                            {[...allReports].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map((item, i) => (
                                 <motion.div 
                                     key={item._id} 
                                     className='history-card' 
@@ -212,7 +212,11 @@ const Home = () => {
                                             ✕
                                         </button>
                                     </div>
-                                    <p className='history-card-summary'>{item.title}</p>
+                                    <p className='history-card-summary'>
+                                        {item.companyName && item.companyName !== 'Unknown Company' 
+                                            ? item.companyName 
+                                            : "Company not specified"}
+                                    </p>
                                     <span className='history-card-date'>
                                         {new Date(item.createdAt).toLocaleString(undefined, {
                                             year: 'numeric', month: 'short', day: 'numeric',

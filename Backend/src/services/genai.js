@@ -38,6 +38,10 @@ const geminiResponseSchema = {
             type: "STRING",
             description: "The title of the job for which the report is generated",
         },
+        companyName: {
+            type: "STRING",
+            description: "The name of the company for the job, if available. Otherwise use 'Unknown Company'",
+        },
         technicalQuestions: {
             type: "ARRAY",
             description: "Technical questions with intention and answer guidance",
@@ -109,6 +113,7 @@ const geminiResponseSchema = {
     required: [
         "matchScore",
         "title",
+        "companyName",
         "technicalQuestions",
         "behavioralQuestions",
         "skillGaps",

@@ -90,6 +90,11 @@ const reportSchema = new mongoose.Schema({
         required: true
     },
 
+    companyName: {
+        type: String,
+        default: 'Unknown Company'
+    },
+
     matchScore: {
         type: Number,
         required: true,
